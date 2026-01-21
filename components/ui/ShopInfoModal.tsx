@@ -16,7 +16,7 @@ const ShopInfoModal: React.FC<ShopInfoModalProps> = ({ onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-4 bg-black/90 backdrop-blur-md"
       onClick={onClose}
     >
       <motion.div
@@ -24,23 +24,24 @@ const ShopInfoModal: React.FC<ShopInfoModalProps> = ({ onClose }) => {
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.95, opacity: 0, y: 30 }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="relative w-full max-w-3xl bg-[#080808] border border-apex-red/30 overflow-hidden shadow-[0_0_50px_rgba(218,41,42,0.1)]"
+        className="relative w-[90vw] max-h-[85vh] md:w-full md:max-w-3xl md:h-auto md:max-h-[90vh] bg-[#080808] border border-apex-red/30 shadow-[0_0_50px_rgba(218,41,42,0.1)] rounded-lg overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Background Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(218,41,42,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(218,41,42,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
 
-        {/* Close Button */}
+        {/* Close Button - Sticky/Fixed relative to modal */}
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 z-50 p-2 text-gray-500 hover:text-white transition-colors bg-black/50 rounded-full border border-white/10"
+          className="absolute top-4 right-4 z-50 p-2 text-gray-500 hover:text-white transition-colors bg-black/50 rounded-full border border-white/10 backdrop-blur-sm"
         >
           <X size={20} />
         </button>
 
-        <div className="flex flex-col md:flex-row h-full">
+        {/* Scrollable Container */}
+        <div className="flex flex-col md:flex-row w-full h-full overflow-y-auto md:overflow-visible scrollbar-hide md:scrollbar-default">
             {/* Left Brand Panel */}
-            <div className="w-full md:w-1/3 bg-apex-red/5 border-r border-apex-red/10 p-8 flex flex-col justify-between relative overflow-hidden">
+            <div className="w-full md:w-1/3 bg-apex-red/5 border-b md:border-b-0 md:border-r border-apex-red/10 p-8 flex flex-col justify-between relative overflow-hidden shrink-0">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-apex-red to-transparent"></div>
                 
                 <div>
